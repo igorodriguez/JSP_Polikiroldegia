@@ -26,7 +26,7 @@
 			<input type="hidden" name="id" value="<%=actividad.getId() %>">
 			<div class="form-group">
 				<label for="nombre">Nombre actividad</label>
-				<input type="text" class="form-control" id="nombre" name="nombre" value="<%=actividad.getNombre()%>">
+				<input type="text" disabled class="form-control" id="nombre" name="nombre" value="<%=actividad.getNombre()%>">
 			</div>
 
 			<div class="form-group">
