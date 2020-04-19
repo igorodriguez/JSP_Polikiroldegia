@@ -1,10 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>    
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 <title>Usuarios</title>
 </head>
 <body>
@@ -17,17 +23,17 @@
 		<table class="table table-striped">
 	  <thead>
 	    <tr>
-	      <th scope="col">nombre</th>
-	      <th scope="col">apellido</th>
+	      <th scope="col">nombre y apellido</th>
 	      <th scope="col">dni</th>
+	      <th scope="col">codigo</th>
 	    </tr>
 	  </thead>
 	  <tbody>
 	  <c:forEach items="${usuarios}" var="usuario">
 	    <tr>
-	      <th><a href="VerUsuario?id=${usuario.getId()}">{$usuario.getNombre()}</a></th>
-	      <td>${usuario.getFecha_inicio()}</td>
-	      <td>${usuario.getDias()}</td>
+	      <th><a href="VerUsuario?id=${usuario.getId()}">{$usuario.getNombreApellido()}</a></th>
+	      <td>${usuario.getDni()}</td>
+	      <td>${usuario.getCodigo()}</td>
 	      <td>
 	      	<a class="btn btn-primary" href="VerUsuario?id=${usuario.getId()}">Ver</a>
 	      	<a class="btn btn-secondary" href="EditarUsuario?id=${usuario.getId()}">Editar</a>

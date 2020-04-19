@@ -10,21 +10,19 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import modelo.bean.Actividad;
-import modelo.bean.Usuario;
 import modelo.dao.ModeloActividad;
-import modelo.dao.ModeloUsuario;
 
 /**
- * Servlet implementation class VerActividad
+ * Servlet implementation class BuscarActividades
  */
-@WebServlet("/VerActividad")
-public class VerActividad extends HttpServlet {
+@WebServlet("/BuscarActividades")
+public class BuscarActividades extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public VerActividad() {
+    public BuscarActividades() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -33,25 +31,22 @@ public class VerActividad extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int idActividad = Integer.parseInt(request.getParameter("id"));
-		
-		ModeloActividad mActividad = new ModeloActividad();
-		Actividad actividad = mActividad.getConUsuariosInscritos(idActividad);
-		
-		ModeloUsuario mUsuario = new ModeloUsuario();
-		ArrayList<Usuario> usuarios = mUsuario.selectAll();
-		
-		request.setAttribute("usuarios", usuarios); 
-		request.setAttribute("actividad", actividad);
-		request.getRequestDispatcher("verActividad.jsp").forward(request, response);		
+		// TODO Auto-generated method stub
+		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+		String query = request.getParameter("query");
+		
+		ModeloActividad mActividades = new ModeloActividad();
+		ArrayList<Actividad> actividades = mActividades.buscar(query);
+		
+		request.setAttribute("actividades", actividades);
+		
+		request.getRequestDispatcher("verActividades.jsp").forward(request, response);
 	}
 
 }

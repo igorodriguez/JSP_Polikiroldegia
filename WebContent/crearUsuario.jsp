@@ -18,37 +18,22 @@
 <body>
 
 	<div class="container mt-3">
-		<h1>Formulario para crear actividad</h1>
+		<h1>Formulario para crear usuario</h1>
 
-		<form action="InsertarActividad" method="POST">
+		<form action="InsertarUsuario" method="POST">
 			<div class="form-group">
-				<label for="nombre">Nombre actividad</label>
-				<input type="text" class="form-control" id="nombre" name="nombre">
+				<label for="nombreApellido">Nombre y apellido de usuario</label>
+				<input type="text" class="form-control" id="nombreApellido" name="nombreApellido">
 			</div>
 
 			<div class="form-group">
-				<label for="fecha_inicio">Fecha inicio</label>
-				<input type="text" class="form-control" id="fecha_inicio" name="fecha_inicio" placeholder="yyyy-MM-dd">
+				<label for="dni">dni</label>
+				<input type="text" class="form-control" id="dni" name="dni">
 			</div>
 
 			<div class="form-group">
-				<label for="dias_semana">Dias semana</label>
-				<input type="text" class="form-control" id="dias_semanabre" name="dias_semana">
-			</div>
-
-			<div class="form-group">
-				<label for="horas">Duracion (horas)</label>
-				<input type="text" class="form-control" id="horas" name="horas">
-			</div>
-
-			<div class="form-group">
-				<label for="max_participantes">Máximo numero de participantes</label>
-				<input type="text" class="form-control" id="max_participantes" name="max_participantes">
-			</div>
-
-			<div class="form-group">
-				<label for="precio">Precio</label>
-				<input type="text" class="form-control" id="precio" name="precio">
+				<label for="codigo">codigo</label>
+				<input type="text" class="form-control" id="codigo" name="codigo">
 			</div>
 			
 			<button type="submit" class="btn btn-primary">Submit</button>

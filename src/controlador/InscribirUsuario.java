@@ -1,30 +1,25 @@
 package controlador;
 
 import java.io.IOException;
-import java.util.ArrayList;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import modelo.bean.Actividad;
-import modelo.bean.Usuario;
-import modelo.dao.ModeloActividad;
-import modelo.dao.ModeloUsuario;
+import modelo.dao.ModeloInscripcion;
 
 /**
- * Servlet implementation class VerActividad
+ * Servlet implementation class InscribirUsuario
  */
-@WebServlet("/VerActividad")
-public class VerActividad extends HttpServlet {
+@WebServlet("/InscribirUsuario")
+public class InscribirUsuario extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public VerActividad() {
+    public InscribirUsuario() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -33,25 +28,21 @@ public class VerActividad extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int idActividad = Integer.parseInt(request.getParameter("id"));
-		
-		ModeloActividad mActividad = new ModeloActividad();
-		Actividad actividad = mActividad.getConUsuariosInscritos(idActividad);
-		
-		ModeloUsuario mUsuario = new ModeloUsuario();
-		ArrayList<Usuario> usuarios = mUsuario.selectAll();
-		
-		request.setAttribute("usuarios", usuarios); 
-		request.setAttribute("actividad", actividad);
-		request.getRequestDispatcher("verActividad.jsp").forward(request, response);		
+		// TODO Auto-generated method stub
+		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+		int idActividad = Integer.parseInt(request.getParameter("idactividad"));
+		int idUsuario = Integer.parseInt(request.getParameter("idusuarios"));
+		
+		ModeloInscripcion mInscripcion = new ModeloInscripcion();
+		mInscripcion.inscribir(idUsuario, idActividad);
+		
+		response.sendRedirect("VerActividad?id="+idActividad);
 	}
 
 }
