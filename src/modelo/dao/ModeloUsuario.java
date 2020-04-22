@@ -337,10 +337,10 @@ public class ModeloUsuario extends Conector{
 		}
 	}
 	
-	public void delete(int idUsuario) {
+	public void delete(int id) {
 		try {
 			PreparedStatement pst = super.conexion.prepareStatement("DELETE FROM usuarios WHERE id=?");
-			pst.setInt(1, idUsuario);
+			pst.setInt(1, id);
 			pst.execute();
 			
 		} catch (SQLException e) {
