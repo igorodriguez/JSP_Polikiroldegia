@@ -40,7 +40,6 @@ public class ApiActividadDelete extends HttpServlet {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		
 
 		response.setHeader("Access-Control-Allow-Origin", "*");
 		
