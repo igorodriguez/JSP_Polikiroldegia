@@ -1,6 +1,7 @@
 package api;
 
 import java.io.IOException;
+import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 
@@ -46,8 +47,7 @@ public class ApiActividades extends HttpServlet {
 		
 		String jsonString = JSONStringer.valueToString(actividades);
 		
-//	    PrintWriter out = new PrintWriter(new OutputStreamWriter(response.getOutputStream(), "UTF8"), true);
-		PrintWriter out = response.getWriter();
+	    PrintWriter out = new PrintWriter(new OutputStreamWriter(response.getOutputStream(), "UTF8"), true);
 		out.print(jsonString);
 		out.flush();
 		
