@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.json.JSONObject;
 
+import modelo.bean.MiUsuario;
 import modelo.bean.Usuario;
 import modelo.dao.ModeloUsuario;
 
@@ -49,13 +50,16 @@ public class ApiCreateUsuario extends HttpServlet {
 		JSONObject jsonObject = new JSONObject(jsonUsuario);
 		
 //		komiki objektua sortu
-		Usuario usuario = new Usuario();
+		MiUsuario usuario = new MiUsuario();
 		usuario.setNombreApellido(jsonObject.getString("nombreApellido"));
 		usuario.setCodigo(jsonObject.getString("codigo"));
 		usuario.setDni(jsonObject.getString("dni"));
 		
 		ModeloUsuario mUsuario = new ModeloUsuario();
-		mUsuario.insert(usuario);
+		//Usuario insertaren balidazioa
+		if (usuario.validateUsuario() && mUsuario.existCodigo(usuario.getCodigo()) && mUsuario.existDni(usuario.getDni())) {
+			mUsuario.insert(usuario); 
+			
 		
 		try {
 			mUsuario.getConexion().close();
@@ -67,7 +71,9 @@ public class ApiCreateUsuario extends HttpServlet {
 		response.setHeader("Access-Control-Allow-Origin","*"); //jsonp deia denean ez da behar
 		response.setCharacterEncoding("UTF-8");
 		
-		
+	} else { 
+			response.setStatus(500);
+			}
 	}
 
 }
