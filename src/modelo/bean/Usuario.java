@@ -8,7 +8,6 @@ public class Usuario {
 	private String nombreApellido;
 	private String dni;
 	private String codigo;
-	
 	private ArrayList<Inscripcion> inscripciones;
 
 	public int getId() {

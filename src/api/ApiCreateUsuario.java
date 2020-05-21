@@ -58,6 +58,7 @@ public class ApiCreateUsuario extends HttpServlet {
 		ModeloUsuario mUsuario = new ModeloUsuario();
 		//Usuario insertaren balidazioa
 		if (usuario.validateUsuario() && mUsuario.existCodigo(usuario.getCodigo()) && mUsuario.existDni(usuario.getDni())) {
+			//balidazioa ok
 			mUsuario.insert(usuario); 
 			
 		
@@ -71,8 +72,9 @@ public class ApiCreateUsuario extends HttpServlet {
 		response.setHeader("Access-Control-Allow-Origin","*"); //jsonp deia denean ez da behar
 		response.setCharacterEncoding("UTF-8");
 		
-	} else { 
-			response.setStatus(500);
+	} else { //balidazio NOK
+			//response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+			response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "Balidatzean errorea");
 			}
 	}
 

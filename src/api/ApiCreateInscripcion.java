@@ -2,6 +2,7 @@ package api;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.Date;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -48,6 +49,7 @@ public class ApiCreateInscripcion extends HttpServlet {
 		String jsonInscripcion= request.getParameter("inscripcion");
 		String jsonUsuario = request.getParameter("usuario");
 		String jsonActividad = request.getParameter("actividad");
+		
 		System.out.println(jsonInscripcion);
 		
 		JSONObject jsonObject = new JSONObject(jsonInscripcion);

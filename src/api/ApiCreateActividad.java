@@ -1,7 +1,11 @@
 package api;
 
 import java.io.IOException;
+
+
 import java.sql.SQLException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -11,7 +15,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.json.JSONObject;
 import java.util.Date;
-import java.sql.Date;
 import modelo.bean.Actividad;
 import modelo.dao.ModeloActividad;
 
@@ -45,6 +48,16 @@ public class ApiCreateActividad extends HttpServlet {
 		//datuak jaso
 		request.setCharacterEncoding("UTF-8"); //enieak eta ondo irakurtzeko
 		String jsonActividad = request.getParameter("actividad");
+		Date fechaInicio = null;
+		String fechaInicioParametro = request.getParameter("fecha_inicio");
+		SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
+		
+		try {
+			fechaInicio = formato.parse(request.getParameter("fecha_inicio"));
+		} catch (ParseException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 		
 		System.out.println(jsonActividad);
 		JSONObject jsonObject = new JSONObject(jsonActividad);
@@ -58,6 +71,8 @@ public class ApiCreateActividad extends HttpServlet {
 		actividad.setMaxParticipantes(jsonObject.getInt("maxParticipantes"));
 		actividad.setNombre(jsonObject.getString("nombre"));
 		actividad.setPrecio(jsonObject.getDouble("precio"));
+		
+		
 		
 		ModeloActividad mActividad = new ModeloActividad();
 		mActividad.insert(actividad);
